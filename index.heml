@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Имя Фамилия — Визитка</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f5f0eb;
+      --text: #1a1a1a;
+      --muted: #6b6560;
+      --accent: #c45d3e;
+      --card-bg: #ffffff;
+      --border: #d9d4cf;
+      --input-bg: #faf8f6;
+      --font-body: 'DM Sans', sans-serif;
+      --font-heading: 'Playfair Display', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Typography ── */
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap');
+
+    h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      margin-bottom: 1rem;
+    }
+
+    /* ── Layout ── */
+    .container {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ── Header / Hero ── */
+    .hero {
+      padding: 5rem 0 3rem;
+      text-align: center;
+    }
+
+    .hero p {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--accent);
+      margin: 2rem auto;
+      border-radius: 2px;
+    }
+
+    /* ── About ── */
+    .about {
+      padding: 2rem 0 3rem;
+    }
+
+    .about p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    /* ── Contact ── */
+    .contact {
+      padding: 2rem 0 4rem;
+    }
+
+    .form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--input-bg);
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    /* Turnstile widget placeholder */
+    .captcha-box {
+      margin-bottom: 1.25rem;
+    }
+
+    .btn-submit {
+      display: inline-block;
+      padding: 0.7rem 2rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn-submit:hover { opacity: 0.85; }
+
+    .form-status {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .form-status.success { color: #2e7d32; display: block; }
+    .form-status.error   { color: #c62828; display: block; }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .hero { padding: 3rem 0 2rem; }
+      .form-card { padding: 1.25rem; }
+    }
+  </style>
+
+  <!-- Cloudflare Turnstile -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>Имя Фамилия</h1>
+      <p>Краткое описание — кто вы и чем занимаетесь. Одно-два предложения.</p>
+      <div class="divider"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="container">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum ligula at sapien tincidunt, vel cursus odio posuere. Fusce id velit nec arcu dignissim condimentum vitae a lectus. Blabla-текст для проверки — замените на реальный контент позже.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Связаться со мной</h2>
+      <div class="form-card">
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Имя</label>
+            <input type="text" id="name" name="name" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="message">Сообщение</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+
+          <!-- Cloudflare Turnstile CAPTCHA -->
+          <!-- Замените YOUR_SITE_KEY на реальный ключ из Cloudflare Dashboard -->
+          <div class="captcha-box">
+            <div class="cf-turnstile" data-sitekey="YOUR_SITE_KEY" data-theme="light"></div>
+          </div>
+
+          <button type="submit" class="btn-submit">Отправить</button>
+          <div id="formStatus" class="form-status"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">&copy; 2026 Имя Фамилия</div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Получаем токен Turnstile
+      const token = document.querySelector('[name="cf-turnstile-response"]')?.value;
+      if (!token) {
+        status.textContent = 'Пожалуйста, пройдите проверку CAPTCHA.';
+        status.className = 'form-status error';
+        return;
+      }
+
+      const data = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value,
+        token: token
+      };
+
+      try {
+        // Отправляем на Cloudflare Worker (endpoint будет создан ниже)
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (res.ok) {
+          status.textContent = 'Сообщение отправлено! Спасибо.';
+          status.className = 'form-status success';
+          form.reset();
+          turnstile.reset();
+        } else {
+          throw new Error('Ошибка сервера');
+        }
+      } catch (err) {
+        status.textContent = 'Не удалось отправить. Попробуйте позже.';
+        status.className = 'form-status error';
+      }
+    });
+  </script>
+
+</body>
+</html>
