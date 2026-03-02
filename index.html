@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Software development - trading algorithms</title>
+  <title>Software Development - Fintech & Data Systems</title>
   <style>
     /* ── Reset & Base ── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -186,13 +186,11 @@
     }
   </style>
 
-  <!-- Cloudflare Turnstile -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="container">
       <h1>Aleksandrs Potekhins</h1>
@@ -201,42 +199,37 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section class="about">
     <div class="container">
       
+  <h1>Software Development for Fintech & Data Systems</h1>
+  <p>Building resilient, high-performance financial infrastructure for modern business.</p>
 
-  <h1>Software Development for Algorithmic Trading</h1>
-  <p>I build trading systems that work while you sleep.</p>
+  <p>I am an independent software developer specializing in data-intensive financial infrastructure — from high-throughput processing engines to full-stack automated operational pipelines. My background combines deep technical expertise with a solid understanding of complex data systems: real-time analytics, API integrations, and the mechanics of scalable backend services.</p>
 
-  <p>I'm an independent software developer specializing in algorithmic trading infrastructure — from signal generation and execution engines to full-stack automated pipelines. My background combines deep technical expertise with a real understanding of markets: price action, order flow, technical analysis, and the mechanics of how trades actually get filled.</p>
+  <h2>Technical Solutions</h2>
 
-  <h2>What I Build</h2>
+  <p><strong>High-Performance Infrastructure.</strong> I design architectures for low-latency data processing and smart routing of complex information flows. My systems are built to handle high-frequency events and API rate limits, ensuring operational stability in demanding environments.</p>
 
-  <p><strong>Execution Infrastructure.</strong> Low-latency bots, smart order routing, cross-venue arbitrage systems. I design architectures that handle the messy reality of partial fills, slippage, and API rate limits — not just clean backtests.</p>
+  <p><strong>Distributed Systems.</strong> I work with scalable cloud architectures and distributed ledger technologies, focusing on resource optimization, secure data transmission, and high-availability protocols. I help businesses bridge the gap between traditional banking APIs and modern distributed infrastructure.</p>
 
-  <p><strong>On-Chain Trading Systems.</strong> I work across Ethereum, L2 networks, and Solana — not at surface level, but down to mempool dynamics, gas optimization, and protocol-specific edge cases. I've built on both CEXs and DEXs, and currently focus heavily on Hyperliquid, one of the most interesting venues in the space right now.</p>
-
-  <p><strong>Quantitative Research &amp; ML Pipelines.</strong> Feature engineering, time-series forecasting, neural network models for market data. I apply machine learning where it actually adds alpha — not as a buzzword, but as a tool with clear performance metrics and walk-forward validation.</p>
+  <p><strong>Predictive Analytics & Data Pipelines.</strong> Custom ML-driven pipelines for time-series forecasting and complex pattern recognition. I apply machine learning to extract actionable insights from large datasets, focusing on statistical validation and long-term system reliability.</p>
 
   <h2>Tech Stack</h2>
 
-  <p>Python · Solidity · Rust · JavaScript</p>
+  <p>Python · Rust · JavaScript · SQL & NoSQL</p>
 
-  <p>I use AI agents extensively in my workflow — from Claude and OpenAI to locally hosted LLMs via OpenCode — for rapid prototyping, code generation, and research acceleration. This isn't a gimmick; it's how I deliver faster without cutting corners.</p>
+  <p>I leverage advanced AI-assisted development workflows and modern LLMs to accelerate prototyping and ensure code quality. This approach allows for rapid delivery of robust software solutions while maintaining strict architectural standards.</p>
 
-  <h2>How I Work</h2>
+  <h2>Engagement</h2>
 
-  <p>Most developers in this space use similar tools and similar algorithms. The difference is in the details: how you handle edge cases at 3 AM when liquidity dries up, how you structure code so a strategy can be modified in hours instead of days, how you test against realistic market conditions instead of idealized data.</p>
+  <p>In the fintech space, the difference lies in the implementation: how a system handles edge cases during peak loads, how the codebase is structured for long-term maintenance, and how thoroughly it is tested against real-world scenarios.</p>
 
-  <p>I work as an independent contractor. Engagements range from architecture consulting and algorithm design to full implementation deployed on your infrastructure. Whether you need a single trading bot or an entire system from the ground up — let's talk.</p>
+  <p>I operate as an independent contractor, providing services ranging from architecture consulting and system design to full implementation deployed on your infrastructure. Whether you need to automate a specific business process or build a data-driven system from the ground up — let's discuss your project.</p>
 
-        
-      
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="container">
       <h2>Contact me</h2>
@@ -255,8 +248,6 @@
             <textarea id="message" name="message" required></textarea>
           </div>
 
-          <!-- Cloudflare Turnstile CAPTCHA -->
-          <!-- Замените YOUR_SITE_KEY на реальный ключ из Cloudflare Dashboard -->
           <div class="captcha-box">
             <div class="cf-turnstile" data-sitekey="YOUR_SITE_KEY" data-theme="light"></div>
           </div>
@@ -269,7 +260,7 @@
   </section>
 
   <footer>
-    <div class="container">&copy; 2026</div>
+    <div class="container">&copy; 2026 Aleksandrs Potekhins</div>
   </footer>
 
   <script>
@@ -279,10 +270,9 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Получаем токен Turnstile
       const token = document.querySelector('[name="cf-turnstile-response"]')?.value;
       if (!token) {
-        status.textContent = 'Пожалуйста, пройдите проверку CAPTCHA.';
+        status.textContent = 'Please complete the CAPTCHA.';
         status.className = 'form-status error';
         return;
       }
@@ -295,7 +285,6 @@
       };
 
       try {
-        // Отправляем на Cloudflare Worker (endpoint будет создан ниже)
         const res = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
